@@ -5,6 +5,7 @@ import userRouter from "./routes/userRoutes.js";
 import connectDB from "./config/db.js";
 import userRouter from "./routes/userRoutes.js";
 import contractRouter from "./routes/contractorRoutes.js";
+import entityRouter from "./routes/entityRoutes.js";
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.use(express.json());
 
 app.use("/api/users", userRouter);
 app.use("/api/contracts", contractRouter);
+app.use("/api/entities", entityRouter);
 
 const Port = process.env.PORT || 5000;
 
