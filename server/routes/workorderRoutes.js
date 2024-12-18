@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { createWorkOrder, getWorkOrders } from "../controllers/workorderController.js";
+import { createWorkOrder, getWorkOrders } from "../controllers/workOrderController.js";
 
-const workorderRouter = Router();
+const workOrderRouter = Router();
 
-workorderRouter.post("/create", createWorkOrder);
-workorderRouter.get("/all", getWorkOrders);
+workOrderRouter.post("/create", createWorkOrder);
+workOrderRouter.get("/all", getWorkOrders);
 
-export default workorderRouter;
+export default workOrderRouter;
