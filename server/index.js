@@ -7,7 +7,7 @@ import userRouter from "./routes/userRoutes.js";
 import contractRouter from "./routes/contractorRoutes.js";
 import entityRouter from "./routes/entityRoutes.js";
 import locationRouter from "./routes/locationRoutes.js";
-import workOrderRouter from "./routes/workorderRoutes.js";
+import workOrderRouter from "./routes/workOrderRoutes.js";
 import billRouter from "./routes/billRoutes.js";
 
 dotenv.config();
