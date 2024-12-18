@@ -7,6 +7,7 @@ import userRouter from "./routes/userRoutes.js";
 import contractRouter from "./routes/contractorRoutes.js";
 import entityRouter from "./routes/entityRoutes.js";
 import locationRouter from "./routes/locationRoutes.js";
+import workorderRouter from "./routes/workorderRoutes.js";
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ app.use("/api/users", userRouter);
 app.use("/api/contracts", contractRouter);
 app.use("/api/entities", entityRouter);
 app.use("/api/locations", locationRouter);
+app.use("/api/workorders", workorderRouter);
 
 const Port = process.env.PORT || 5000;
 
