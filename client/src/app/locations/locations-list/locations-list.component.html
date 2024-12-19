@@ -1,7 +1,9 @@
 <mat-card style="margin:20px;">
-  <mat-card-title>All Locations</mat-card-title>
-  <mat-card-content>
+  <div style="display: flex; justify-content: space-between; gap: 16px;">
+    <mat-card-title>All Locations</mat-card-title>
     <button mat-raised-button color="primary" [routerLink]="'new'" style="margin-bottom:20px;">Add Location</button>
+  </div>
+  <mat-card-content>
 
     <table mat-table [dataSource]="locations" class="mat-elevation-z8" style="width: 100%;">
       <ng-container matColumnDef="name">
