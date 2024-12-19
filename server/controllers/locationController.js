@@ -1,13 +1,13 @@
 import Location from "../models/Location.js";
 
 export async function createLocation(req, res) {
-  const { name, address } = req.body;
+  const { name, entityId } = req.body;
   try {
     const location = await Location.findOne({ name });
     if (location) {
       return res.status(400).json({ error: "Name already exists" });
     } else {
-      const newLocation = new Location({ name, address });
+      const newLocation = new Location({ name, entityId });
       await newLocation.save();
       return res.status(201).json({ message: "Location created successfully" });
     }

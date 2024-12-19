@@ -1,0 +1,25 @@
+<h2>Add Location</h2>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="name"
+      formControlName="name"
+      placeholder="Name"
+    />
+  </div>
+  <div class="form-group">
+    <label for="entityId">Entity</label>
+    <select
+      class="form-control"
+      id="entityId"
+      formControlName="entityId"
+    >
+      <option *ngFor="let e of entities" [value]="e._id">{{ e.name }}</option>
+    </select>
+  </div>
+  <button type="submit" [disabled]="!form.valid">Submit</button>
+</form>

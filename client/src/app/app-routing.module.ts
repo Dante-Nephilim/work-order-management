@@ -14,6 +14,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./entities/entities.module').then((m) => m.EntitiesModule),
   },
+  {
+    path: 'locations',
+    loadChildren: () =>
+      import('./locations/locations.module').then((m) => m.LocationsModule),
+  },
 ];
 
 @NgModule({
