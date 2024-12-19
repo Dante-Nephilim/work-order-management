@@ -1,0 +1,82 @@
+<h2>Add Work Order</h2>
+
+<form [formGroup]="mainForm" (ngSubmit)="submit()">
+  <div class="form-group">
+    <label for="contractorId">Contractor</label>
+    <select class="form-control" id="contractorId" formControlName="contractorId">
+      <option [value]="''" disabled>Select a contractor</option>
+      <option *ngFor="let c of contractors" [value]="c._id">{{ c.name }}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="paymentTerms">Payment Terms</label>
+    <input
+      type="number"
+      class="form-control"
+      id="paymentTerms"
+      formControlName="paymentTerms"
+      placeholder="Payment Terms"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="dueDate">Due Date</label>
+    <input
+      type="date"
+      class="form-control"
+      id="dueDate"
+      formControlName="dueDate"
+      placeholder="Due Date"
+    />
+  </div>
+
+  <hr>
+
+  <h3>Locations</h3>
+  <div *ngIf="locationsFormArray.controls.length > 0" class="mb-3">
+    <ul>
+      <li *ngFor="let locCtrl of locationsFormArray.controls; let i = index">
+        {{ getLocationNameById(locCtrl.value.locationId) }} -
+        Rate: {{ locCtrl.value.rate }},
+        Quantity: {{ locCtrl.value.quantity }}
+      </li>
+    </ul>
+  </div>
+
+  <button type="button" class="btn btn-info mb-3" *ngIf="!addingLocation" (click)="startAddingLocation()">
+    Add Location
+  </button>
+
+  <div *ngIf="addingLocation" [formGroup]="locationForm" class="border p-3 mb-3">
+    <div class="form-group">
+      <label for="locationId">Location</label>
+      <select id="locationId" class="form-control" formControlName="locationId" (change)="onLocationChange()">
+        <option [value]="''" disabled>Select a location</option>
+        <option *ngFor="let l of availableLocations" [value]="l._id">{{ l.name }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input id="name" type="text" class="form-control" formControlName="name" />
+    </div>
+
+    <div class="form-group">
+      <label for="rate">Rate</label>
+      <input id= "rate" type="number" class="form-control" formControlName="rate" />
+    </div>
+
+    <div class="form-group">
+      <label for="quantity" >Quantity</label>
+      <input id="quantity" type="number" class="form-control" formControlName="quantity" />
+    </div>
+
+    <button type="button" class="btn btn-primary mr-2" (click)="addLocation()" [disabled]="!locationForm.valid">Add</button>
+    <button type="button" class="btn btn-secondary" (click)="cancelAddingLocation()">Cancel</button>
+  </div>
+
+  <hr>
+
+  <button type="submit" class="btn btn-success" [disabled]="!mainForm.valid">Submit Work Order</button>
+</form>

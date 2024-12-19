@@ -24,7 +24,7 @@ app.use("/api/users", userRouter);
 app.use("/api/contractors", contractRouter);
 app.use("/api/entities", entityRouter);
 app.use("/api/locations", locationRouter);
-app.use("/api/workOrders", workOrderRouter);
+app.use("/api/work-orders", workOrderRouter);
 app.use("/api/bills", billRouter);
 
 const Port = process.env.PORT || 5000;
