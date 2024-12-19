@@ -1,14 +1,16 @@
 <mat-card style="margin:20px;">
+  <div style="display:flex; justify-content: space-between; gap: 16px;">
     <mat-card-title>Bills</mat-card-title>
+    <button
+    mat-raised-button
+    color="primary"
+    (click)="runBills()"
+    style="margin-bottom: 20px;"
+    >
+    Run Bills
+  </button>
+</div>
     <mat-card-content>
-      <button
-        mat-raised-button
-        color="primary"
-        (click)="runBills()"
-        style="margin-bottom: 20px;"
-      >
-        Run Bills
-      </button>
 
       <div *ngIf="bills.length > 0">
         <mat-card *ngFor="let b of bills" style="margin-bottom: 20px;">
