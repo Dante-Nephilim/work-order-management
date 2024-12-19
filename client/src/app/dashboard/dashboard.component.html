@@ -1,0 +1,54 @@
+<mat-toolbar color="primary">
+    <span>Dashboard</span>
+    <span class="spacer" style="flex:1 1 auto;"></span>
+  </mat-toolbar>
+  
+  <div style="margin: 20px;">
+    <mat-grid-list cols="3" rowHeight="150px" gutterSize="20px">
+      <mat-grid-tile>
+        <mat-card class="mat-elevation-z4">
+          <mat-card-title>Contractors</mat-card-title>
+          <mat-card-content>
+            <h2 style="margin:0; font-size:2em;">{{ dashboardData.totalContractors }}</h2>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+  
+      <mat-grid-tile>
+        <mat-card class="mat-elevation-z4">
+          <mat-card-title>Entities</mat-card-title>
+          <mat-card-content>
+            <h2 style="margin:0; font-size:2em;">{{ dashboardData.totalEntities }}</h2>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+  
+      <mat-grid-tile>
+        <mat-card class="mat-elevation-z4">
+          <mat-card-title>Locations</mat-card-title>
+          <mat-card-content>
+            <h2 style="margin:0; font-size:2em;">{{ dashboardData.totalLocations }}</h2>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+  
+      <mat-grid-tile>
+        <mat-card class="mat-elevation-z4">
+          <mat-card-title>Work Orders</mat-card-title>
+          <mat-card-content>
+            <h2 style="margin:0; font-size:2em;">{{ dashboardData.totalWorkOrders }}</h2>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+  
+      <mat-grid-tile>
+        <mat-card class="mat-elevation-z4">
+          <mat-card-title>Bills</mat-card-title>
+          <mat-card-content>
+            <h2 style="margin:0; font-size:2em;">{{ dashboardData.totalBills }}</h2>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  
