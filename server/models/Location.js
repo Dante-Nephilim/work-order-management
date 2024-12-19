@@ -17,6 +17,11 @@ const LocationSchema = new Schema(
       enum: ["Ready", "Completed"],
       default: "Ready",
     },
+    completedBy: {
+      type: Schema.Types.ObjectId,
+      ref: "Contractor",
+      required: false,
+    },
   },
   { timestamps: true }
 );

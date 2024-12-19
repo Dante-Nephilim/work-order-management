@@ -19,23 +19,12 @@ const BillSchema = new Schema(
           ref: "Location",
           required: true,
         },
-        name: {
-          type: String,
-          required: true,
-        },
-        rate: {
-          type: Number,
-          required: true,
-        },
-        quantity: {
-          type: Number,
-          required: true,
-        },
+        name: { type: String, required: true },
+        rate: { type: Number, required: true },
+        quantity: { type: Number, required: true },
       },
     ],
-    totalAmount: {
-      type: Number,
-    },
+    totalAmount: { type: Number },
   },
   { timestamps: true }
 );

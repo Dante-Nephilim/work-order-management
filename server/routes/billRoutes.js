@@ -1,9 +1,8 @@
 import { Router } from "express";
-import { createBill, getBills } from "../controllers/billController.js";
+import { runBills, getBills } from "../controllers/billController.js";
+const router = Router();
 
-const billRouter = Router();
+router.post("/run", runBills);
+router.get("/", getBills);
 
-billRouter.post("/create", createBill);
-billRouter.get("/all", getBills);
-
-export default billRouter;
+export default router;

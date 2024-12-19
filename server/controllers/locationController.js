@@ -1,4 +1,5 @@
 import Location from "../models/Location.js";
+import WorkOrder from "../models/WorkOrder.js";
 
 export async function createLocation(req, res) {
   const { name, entityId } = req.body;
@@ -27,18 +28,37 @@ export async function getLocations(req, res) {
   }
 }
 
-export async function markLocationAsCompleted(req, res) {
-  const { locationId } = req.body;
+export async function markLocationCompleted(req, res) {
+  const { id } = req.params;
+  const { contractorId } = req.body;
+
   try {
-    const location = await Location.findById(locationId);
-    if (!location) {
-      return res.status(400).json({ error: "Location not found" });
-    }
-    location.completed = true;
+    const location = await Location.findById(id);
+    if (!location) return res.status(404).json({ error: "Location not found" });
+
+    location.state = "Completed";
+    location.completedBy = contractorId;
     await location.save();
-    return res.status(200).json({ message: "Location marked as completed" });
+
+    res.json({ message: "Location marked as completed", location });
   } catch (err) {
-    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+}
+
+export async function getLocationContractors(req, res) {
+  const { id } = req.params;
+  try {
+    const wos = await WorkOrder.find({ "locations.locationId": id }).populate("contractorId", "name phone");
+    const contractorSet = new Set();
+    wos.forEach((wo) => {
+      contractorSet.add(
+        JSON.stringify({ _id: wo.contractorId._id, name: wo.contractorId.name, phone: wo.contractorId.phone })
+      );
+    });
+    const contractors = Array.from(contractorSet).map((c) => JSON.parse(c));
+    res.json(contractors);
+  } catch (err) {
     res.status(500).json({ error: err.message });
   }
 }
