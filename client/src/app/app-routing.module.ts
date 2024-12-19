@@ -9,6 +9,11 @@ const routes: Routes = [
         (m) => m.ContractorsModule
       ),
   },
+  {
+    path: 'entities',
+    loadChildren: () =>
+      import('./entities/entities.module').then((m) => m.EntitiesModule),
+  },
 ];
 
 @NgModule({
