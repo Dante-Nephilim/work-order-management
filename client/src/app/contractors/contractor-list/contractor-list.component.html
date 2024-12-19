@@ -1,0 +1,5 @@
+<h2>Contractors</h2>
+<a routerLink="new">Add Contractor</a>
+<ul>
+  <li *ngFor="let c of contractors">{{ c.name }} - {{ c.phone }}</li>
+</ul>

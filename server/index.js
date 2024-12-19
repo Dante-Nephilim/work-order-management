@@ -21,7 +21,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/users", userRouter);
-app.use("/api/contracts", contractRouter);
+app.use("/api/contractors", contractRouter);
 app.use("/api/entities", entityRouter);
 app.use("/api/locations", locationRouter);
 app.use("/api/workOrders", workOrderRouter);
