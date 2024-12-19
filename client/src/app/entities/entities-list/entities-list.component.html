@@ -1,5 +1,9 @@
-<h2>Entities</h2>
-<a routerLink="new">Add Entity</a>
-<ul>
-  <li *ngFor="let e of entities">{{ e.name }}</li>
-</ul>
+<mat-card style="margin:20px;">
+  <mat-card-title>Entities</mat-card-title>
+  <mat-card-content>
+    <button mat-raised-button color="primary" [routerLink]="'new'" style="margin-bottom:20px;">Add Entity</button>
+    <mat-list>
+      <mat-list-item *ngFor="let e of entities">{{ e.name }}</mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

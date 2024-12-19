@@ -1,0 +1,29 @@
+<mat-card style="margin:20px;">
+    <mat-card-title>Bills</mat-card-title>
+    <mat-card-content>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="runBills()"
+        style="margin-bottom: 20px;"
+      >
+        Run Bills
+      </button>
+
+      <div *ngIf="bills.length > 0">
+        <mat-card *ngFor="let b of bills" style="margin-bottom: 20px;">
+          <mat-card-title
+            >{{ b.billNumber }} - Total: {{ b.totalAmount }}</mat-card-title
+          >
+          <mat-card-content>
+            <ul style="padding-left:20px;">
+              <li *ngFor="let loc of b.locations">
+                {{ loc.name }} (LocationID: {{ loc.locationId }}) - Rate:
+                {{ loc.rate }}, Qty: {{ loc.quantity }}
+              </li>
+            </ul>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-card-content>
+  </mat-card>

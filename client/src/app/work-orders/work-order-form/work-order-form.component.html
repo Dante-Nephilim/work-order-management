@@ -1,82 +1,76 @@
-<h2>Add Work Order</h2>
+<mat-card style="margin:20px;">
+  <mat-card-title>Add Work Order</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="mainForm" (ngSubmit)="submit()">
+      <mat-form-field appearance="outline" style="width:100%; margin-bottom:15px;">
+        <mat-label>Contractor</mat-label>
+        <mat-select formControlName="contractorId">
+          <mat-option [value]="''" disabled>Select a contractor</mat-option>
+          <mat-option *ngFor="let c of contractors" [value]="c._id">{{ c.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
 
-<form [formGroup]="mainForm" (ngSubmit)="submit()">
-  <div class="form-group">
-    <label for="contractorId">Contractor</label>
-    <select class="form-control" id="contractorId" formControlName="contractorId">
-      <option [value]="''" disabled>Select a contractor</option>
-      <option *ngFor="let c of contractors" [value]="c._id">{{ c.name }}</option>
-    </select>
-  </div>
+      <mat-form-field appearance="outline" style="width:100%; margin-bottom:15px;">
+        <mat-label>Payment Terms</mat-label>
+        <input matInput type="number" formControlName="paymentTerms" placeholder="Payment Terms">
+      </mat-form-field>
 
-  <div class="form-group">
-    <label for="paymentTerms">Payment Terms</label>
-    <input
-      type="number"
-      class="form-control"
-      id="paymentTerms"
-      formControlName="paymentTerms"
-      placeholder="Payment Terms"
-    />
-  </div>
+      <mat-form-field appearance="outline" style="width:100%; margin-bottom:15px;">
+        <mat-label for="dueDate">Due Date</mat-label>
+        <input title="Due Date" id="dueDate" matInput type="date" formControlName="dueDate">
+      </mat-form-field>
 
-  <div class="form-group">
-    <label for="dueDate">Due Date</label>
-    <input
-      type="date"
-      class="form-control"
-      id="dueDate"
-      formControlName="dueDate"
-      placeholder="Due Date"
-    />
-  </div>
+      <mat-divider style="margin:20px 0;"></mat-divider>
 
-  <hr>
+      <h3>Locations</h3>
+      <div *ngIf="locationsFormArray.controls.length > 0" style="margin-bottom:15px;">
+        <mat-list>
+          <mat-list-item *ngFor="let locCtrl of locationsFormArray.controls; let i = index">
+            {{ getLocationNameById(locCtrl.value.locationId) }} -
+            Rate: {{ locCtrl.value.rate }},
+            Quantity: {{ locCtrl.value.quantity }}
+          </mat-list-item>
+        </mat-list>
+      </div>
 
-  <h3>Locations</h3>
-  <div *ngIf="locationsFormArray.controls.length > 0" class="mb-3">
-    <ul>
-      <li *ngFor="let locCtrl of locationsFormArray.controls; let i = index">
-        {{ getLocationNameById(locCtrl.value.locationId) }} -
-        Rate: {{ locCtrl.value.rate }},
-        Quantity: {{ locCtrl.value.quantity }}
-      </li>
-    </ul>
-  </div>
+      <button mat-raised-button color="primary" type="button" style="margin-bottom:15px;" *ngIf="!addingLocation" (click)="startAddingLocation()">
+        Add Location
+      </button>
 
-  <button type="button" class="btn btn-info mb-3" *ngIf="!addingLocation" (click)="startAddingLocation()">
-    Add Location
-  </button>
+      <mat-card *ngIf="addingLocation" style="margin-bottom:15px;">
+        <mat-card-title>Add Location to Work Order</mat-card-title>
+        <mat-card-content [formGroup]="locationForm">
+          <mat-form-field appearance="outline" style="width:100%; margin-bottom:15px;">
+            <mat-label>Location</mat-label>
+            <mat-select formControlName="locationId" (selectionChange)="onLocationChange()">
+              <mat-option [value]="''" disabled>Select a location</mat-option>
+              <mat-option *ngFor="let l of availableLocations" [value]="l._id">{{ l.name }}</mat-option>
+            </mat-select>
+          </mat-form-field>
 
-  <div *ngIf="addingLocation" [formGroup]="locationForm" class="border p-3 mb-3">
-    <div class="form-group">
-      <label for="locationId">Location</label>
-      <select id="locationId" class="form-control" formControlName="locationId" (change)="onLocationChange()">
-        <option [value]="''" disabled>Select a location</option>
-        <option *ngFor="let l of availableLocations" [value]="l._id">{{ l.name }}</option>
-      </select>
-    </div>
+          <mat-form-field appearance="outline" style="width:100%; margin-bottom:15px;">
+            <mat-label>Name</mat-label>
+            <input title="Name" matInput type="text" formControlName="name">
+          </mat-form-field>
 
-    <div class="form-group">
-      <label for="name">Name</label>
-      <input id="name" type="text" class="form-control" formControlName="name" />
-    </div>
+          <mat-form-field appearance="outline" style="width:100%; margin-bottom:15px;">
+            <mat-label>Rate</mat-label>
+            <input title="Rate" matInput type="number" formControlName="rate">
+          </mat-form-field>
 
-    <div class="form-group">
-      <label for="rate">Rate</label>
-      <input id= "rate" type="number" class="form-control" formControlName="rate" />
-    </div>
+          <mat-form-field appearance="outline" style="width:100%; margin-bottom:15px;">
+            <mat-label>Quantity</mat-label>
+            <input title="Quantity" matInput type="number" formControlName="quantity">
+          </mat-form-field>
 
-    <div class="form-group">
-      <label for="quantity" >Quantity</label>
-      <input id="quantity" type="number" class="form-control" formControlName="quantity" />
-    </div>
+          <button mat-raised-button color="primary" type="button" (click)="addLocation()" [disabled]="!locationForm.valid" style="margin-right:10px;">Add</button>
+          <button mat-button type="button" (click)="cancelAddingLocation()">Cancel</button>
+        </mat-card-content>
+      </mat-card>
 
-    <button type="button" class="btn btn-primary mr-2" (click)="addLocation()" [disabled]="!locationForm.valid">Add</button>
-    <button type="button" class="btn btn-secondary" (click)="cancelAddingLocation()">Cancel</button>
-  </div>
+      <mat-divider style="margin:20px 0;"></mat-divider>
 
-  <hr>
-
-  <button type="submit" class="btn btn-success" [disabled]="!mainForm.valid">Submit Work Order</button>
-</form>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!mainForm.valid">Submit Work Order</button>
+    </form>
+  </mat-card-content>
+</mat-card>

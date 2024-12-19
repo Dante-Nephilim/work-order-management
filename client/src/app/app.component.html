@@ -1,11 +1,11 @@
+<mat-toolbar color="primary">
+  <span>{{ title }}</span>
+  <span class="spacer" style="flex: 1 1 auto;"></span>
+  <button mat-button routerLink="/contractors">Contractors</button>
+  <button mat-button routerLink="/entities">Entities</button>
+  <button mat-button routerLink="/locations">Locations</button>
+  <button mat-button routerLink="/work-orders">Work Orders</button>
+  <button mat-button routerLink="/bills">Bills</button>
+</mat-toolbar>
 
-    <h1>{{ title }}</h1>
-    <nav>
-      <a routerLink="/contractors">Contractors</a> |
-      <a routerLink="/entities">Entities</a> |
-      <a routerLink="/locations">Locations</a> |
-      <a routerLink="/work-orders">Work Orders</a> |
-      <a routerLink="/bills">Bills</a>
-    </nav>
-    <hr>
 <router-outlet></router-outlet>

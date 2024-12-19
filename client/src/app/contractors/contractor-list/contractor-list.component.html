@@ -1,5 +1,11 @@
-<h2>Contractors</h2>
-<a routerLink="new">Add Contractor</a>
-<ul>
-  <li *ngFor="let c of contractors">{{ c.name }} - {{ c.phone }}</li>
-</ul>
+<mat-card style="margin:20px;">
+  <mat-card-title>Contractors</mat-card-title>
+  <mat-card-content>
+    <button mat-raised-button color="primary" [routerLink]="'new'" style="margin-bottom:20px;">Add Contractor</button>
+    <mat-list>
+      <mat-list-item *ngFor="let c of contractors">
+        {{ c.name }} - {{ c.phone }}
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

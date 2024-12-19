@@ -5,6 +5,7 @@ import { LocationsFormComponent } from './locations-form/locations-form.componen
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { MaterialModule } from '../shared/material.module';
 
 const routes: Routes = [
   { path: '', component: LocationsListComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forChild(routes),
     FormsModule,
+    MaterialModule,
   ],
 })
 export class LocationsModule {}

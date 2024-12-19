@@ -1,40 +1,55 @@
-<a routerLink="new">Add Location</a>
-<h2>All Locations</h2>
+<mat-card style="margin:20px;">
+  <mat-card-title>All Locations</mat-card-title>
+  <mat-card-content>
+    <button mat-raised-button color="primary" [routerLink]="'new'" style="margin-bottom:20px;">Add Location</button>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Entity</th>
-      <th>State</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let loc of locations">
-      <td>{{ loc.name }}</td>
-      <td>{{ loc.entityId }}</td>
-      <td>{{ loc.state }}</td>
-      <td>
-        <button class="btn btn-primary btn-sm" [disabled]="loc.state === 'Completed'" (click)="completeLocation(loc)">
-          Complete
-        </button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+    <table mat-table [dataSource]="locations" class="mat-elevation-z8" style="width: 100%;">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef><strong>Name</strong></th>
+        <td mat-cell *matCellDef="let loc">{{ loc.name }}</td>
+      </ng-container>
 
-<div *ngIf="showCompletionForm" class="mt-4 border p-3">
-  <h3>Mark {{selectedLocation?.name}} as Completed</h3>
-  <div class="form-group">
-    <label for="contractorSelect">Select Contractor</label>
-    <select id="contractorSelect" class="form-control" [(ngModel)]="selectedContractorId">
-      <option [value]="''" disabled>Select a contractor</option>
-      <option *ngFor="let c of contractorOptions" [value]="c._id">{{ c.name }}</option>
-    </select>
-  </div>
-  <button class="btn btn-success mr-2" [disabled]="!selectedContractorId" (click)="submitCompletion()">
-    Submit
-  </button>
-  <button class="btn btn-secondary" (click)="cancelCompletion()">Cancel</button>
-</div>
+      <ng-container matColumnDef="entityId">
+        <th mat-header-cell *matHeaderCellDef><strong>Entity</strong></th>
+        <td mat-cell *matCellDef="let loc">{{ loc.entityId }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="state">
+        <th mat-header-cell *matHeaderCellDef><strong>State</strong></th>
+        <td mat-cell *matCellDef="let loc">{{ loc.state }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef><strong>Action</strong></th>
+        <td mat-cell *matCellDef="let loc">
+          <button mat-raised-button color="primary" [disabled]="loc.state === 'Completed'" (click)="completeLocation(loc)">
+            Complete
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="['name', 'entityId', 'state', 'action']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['name', 'entityId', 'state', 'action']"></tr>
+    </table>
+  </mat-card-content>
+</mat-card>
+
+<mat-card *ngIf="showCompletionForm" style="margin:20px;">
+  <mat-card-title>Mark {{selectedLocation?.name}} as Completed</mat-card-title>
+  <mat-card-content>
+    <mat-form-field style="width:100%;" appearance="outline">
+      <mat-label>Select Contractor</mat-label>
+      <mat-select [(value)]="selectedContractorId">
+        <mat-option [value]="''" disabled>Select a contractor</mat-option>
+        <mat-option *ngFor="let c of contractorOptions" [value]="c._id">{{ c.name }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div style="margin-top:20px;">
+      <button mat-raised-button color="primary" [disabled]="!selectedContractorId" (click)="submitCompletion()">
+        Submit
+      </button>
+      <button mat-button (click)="cancelCompletion()">Cancel</button>
+    </div>
+  </mat-card-content>
+</mat-card>
