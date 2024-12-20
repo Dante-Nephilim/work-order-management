@@ -1,14 +1,24 @@
 <mat-card style="margin:20px;">
   <div style="display:flex; justify-content: space-between; gap: 16px;">
     <mat-card-title>Bills</mat-card-title>
+    <div style="display:flex; justify-content: space-between; gap: 16px;">
+      <button
+      mat-raised-button
+      color="primary"
+      (click)="runBills()"
+      style="margin-bottom: 20px;"
+      >
+      Run Bills
+    </button>
     <button
-    mat-raised-button
-    color="primary"
-    (click)="runBills()"
-    style="margin-bottom: 20px;"
-    >
-    Run Bills
-  </button>
+      mat-raised-button
+      color="primary"
+      (click)="generatePdf()"
+      style="margin-bottom: 20px;"
+      >
+      Generate PDF
+    </button>
+  </div>
 </div>
     <mat-card-content>
 

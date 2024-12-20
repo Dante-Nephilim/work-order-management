@@ -182,5 +182,6 @@ Body:
 - If the contractor is associated with the location, add the location to the bill
 - Calculate the total amount for the bill
 - Save the bill
+- generate pdf of all the bills in the system
 
 ---
