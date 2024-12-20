@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Work Order Management System';
+  get isLoggedIn() {
+    return localStorage.getItem('token') !== null;
+  }
+  constructor() {}
+  logout() {
+    localStorage.removeItem('token');
+    window.location.reload();
+  }
 }

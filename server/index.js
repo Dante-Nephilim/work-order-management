@@ -9,7 +9,7 @@ import locationRouter from "./routes/locationRoutes.js";
 import workOrderRouter from "./routes/workOrderRoutes.js";
 import billRouter from "./routes/billRoutes.js";
 import dashboardRouter from "./routes/dashboardRoutes.js";
-
+import auth from "./middlewares/auth.js";
 dotenv.config();
 
 const app = express();
@@ -22,12 +22,12 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/users", userRouter);
-app.use("/api/contractors", contractRouter);
-app.use("/api/entities", entityRouter);
-app.use("/api/locations", locationRouter);
-app.use("/api/work-orders", workOrderRouter);
-app.use("/api/bills", billRouter);
-app.use("/dashboard", dashboardRouter);
+app.use("/api/contractors", auth, contractRouter);
+app.use("/api/entities", auth, entityRouter);
+app.use("/api/locations", auth, locationRouter);
+app.use("/api/work-orders", auth, workOrderRouter);
+app.use("/api/bills", auth, billRouter);
+app.use("/dashboard", auth, dashboardRouter);
 
 const Port = process.env.PORT || 5000;
 
