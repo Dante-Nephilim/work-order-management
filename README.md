@@ -4,6 +4,13 @@ MEAN stack application for managing work orders and billing
 
 ---
 
+## DEMO: 
+<a href="https://www.loom.com/share/b55aa915d3634338938531240b62aa01?sid=d22c19de-6297-44b2-89d6-e2454f0b4b5d" target="_blank"><p>Video Demo Link</p>
+<img src="demo.gif"/>
+</a>
+
+---
+
 ## Dev Setup
 - Clone the repo
 - Run `npm install` in the client and server folders
