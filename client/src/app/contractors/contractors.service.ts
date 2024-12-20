@@ -15,15 +15,10 @@ export class ContractorsService {
   constructor(private http: HttpClient) {}
 
   getContractors(): Observable<Contractor[]> {
-    return this.http.get<Contractor[]>(
-      'http://localhost:3000/api/contractors/all'
-    );
+    return this.http.get<Contractor[]>(this.baseUrl);
   }
 
   createContractor(data: Contractor): Observable<Contractor> {
-    return this.http.post<Contractor>(
-      `http://localhost:3000/api/contractors/create`,
-      data
-    );
+    return this.http.post<Contractor>(this.baseUrl, data);
   }
 }

@@ -10,8 +10,8 @@ import {
 
 const locationRouter = Router();
 
-locationRouter.post("/create", createLocation);
-locationRouter.get("/all", getLocations);
+locationRouter.post("/", createLocation);
+locationRouter.get("/", getLocations);
 locationRouter.get("/:id/contractors", getLocationContractors);
 locationRouter.put("/:id/complete", markLocationCompleted);
 locationRouter.get("/sortByName", getLocationsSortedByName);

@@ -3,7 +3,7 @@ import { createContractor, getContractors } from "../controllers/contractorContr
 
 const contractorRouter = Router();
 
-contractorRouter.post("/create", createContractor);
-contractorRouter.get("/all", getContractors);
+contractorRouter.post("/", createContractor);
+contractorRouter.get("/", getContractors);
 
 export default contractorRouter;

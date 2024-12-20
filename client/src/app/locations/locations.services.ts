@@ -17,7 +17,7 @@ export class LocationsService {
   constructor(private http: HttpClient) {}
 
   getLocations(): Observable<Location[]> {
-    return this.http.get<Location[]>('http://localhost:3000/api/locations/all');
+    return this.http.get<Location[]>(this.baseUrl);
   }
 
   getContractorsForLocation(id: string): Observable<Contractor[]> {
@@ -28,19 +28,12 @@ export class LocationsService {
     return this.http.put(`${this.baseUrl}/${id}/complete`, { contractorId });
   }
   createLocation(data: Location): Observable<Location> {
-    return this.http.post<Location>(
-      `http://localhost:3000/api/locations/create`,
-      data
-    );
+    return this.http.post<Location>(this.baseUrl, data);
   }
   getLocationsSortedByName(): Observable<Location[]> {
-    return this.http.get<Location[]>(
-      `http://localhost:3000/api/locations/sortByName`
-    );
+    return this.http.get<Location[]>(`${this.baseUrl}/sortByName`);
   }
   getLocationsCompleted(): Observable<Location[]> {
-    return this.http.get<Location[]>(
-      `http://localhost:3000/api/locations/completed`
-    );
+    return this.http.get<Location[]>(`${this.baseUrl}/completed`);
   }
 }

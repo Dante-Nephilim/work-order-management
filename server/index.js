@@ -27,7 +27,7 @@ app.use("/api/entities", auth, entityRouter);
 app.use("/api/locations", auth, locationRouter);
 app.use("/api/work-orders", auth, workOrderRouter);
 app.use("/api/bills", auth, billRouter);
-app.use("/dashboard", auth, dashboardRouter);
+app.use("/api/dashboard", auth, dashboardRouter);
 
 const Port = process.env.PORT || 5000;
 

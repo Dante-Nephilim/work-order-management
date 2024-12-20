@@ -8,8 +8,8 @@ import {
 
 const workOrderRouter = Router();
 
-workOrderRouter.post("/create", createWorkOrder);
-workOrderRouter.get("/all", getWorkOrders);
+workOrderRouter.post("/", createWorkOrder);
+workOrderRouter.get("/", getWorkOrders);
 workOrderRouter.get("/sortByPaymentTerms", getWorkOrdersSortedByPaymentTerms);
 workOrderRouter.post("/filterByDate", getWorkOrdersFilteredByDate);
 

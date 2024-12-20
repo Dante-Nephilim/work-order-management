@@ -14,13 +14,10 @@ export class EntitiesService {
   constructor(private http: HttpClient) {}
 
   getEntities(): Observable<Entity[]> {
-    return this.http.get<Entity[]>('http://localhost:3000/api/entities/all');
+    return this.http.get<Entity[]>(this.baseUrl);
   }
 
   createEntities(data: Entity): Observable<Entity> {
-    return this.http.post<Entity>(
-      `http://localhost:3000/api/entities/create`,
-      data
-    );
+    return this.http.post<Entity>(this.baseUrl, data);
   }
 }

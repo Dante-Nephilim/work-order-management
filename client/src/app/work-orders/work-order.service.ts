@@ -23,26 +23,18 @@ export class WorkOrdersService {
   constructor(private http: HttpClient) {}
 
   getWorkOrders(): Observable<WorkOrder[]> {
-    return this.http.get<WorkOrder[]>(
-      'http://localhost:3000/api/work-orders/all'
-    );
+    return this.http.get<WorkOrder[]>(this.baseUrl);
   }
 
   createWorkOrder(data: WorkOrder): Observable<WorkOrder> {
-    return this.http.post<WorkOrder>(
-      `http://localhost:3000/api/work-orders/create`,
-      data
-    );
+    return this.http.post<WorkOrder>(this.baseUrl, data);
   }
   getWorkOrdersSortedByPaymentTerms(): Observable<WorkOrder[]> {
-    return this.http.get<WorkOrder[]>(
-      `http://localhost:3000/api/work-orders/sortByPaymentTerms`
-    );
+    return this.http.get<WorkOrder[]>(`${this.baseUrl}/sortByPaymentTerms`);
   }
   getWorkOrdersFilteredByDate(date: string): Observable<WorkOrder[]> {
-    return this.http.post<WorkOrder[]>(
-      `http://localhost:3000/api/work-orders/filterByDate`,
-      { date }
-    );
+    return this.http.post<WorkOrder[]>(`${this.baseUrl}/filterByDate`, {
+      date,
+    });
   }
 }
