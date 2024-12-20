@@ -2,6 +2,9 @@
   <div style="display: flex; justify-content: space-between; gap: 16px;">
     <mat-card-title>All Locations</mat-card-title>
     <button mat-raised-button color="primary" [routerLink]="'new'" style="margin-bottom:20px;">Add Location</button>
+    <button mat-raised-button color="primary" style="margin-bottom:20px;" (click)="sortUsingName()">Sort By Name</button>
+    <button mat-raised-button color="primary" style="margin-bottom:20px;" (click)="filterByState()">Filter By State</button>
+
   </div>
   <mat-card-content>
 

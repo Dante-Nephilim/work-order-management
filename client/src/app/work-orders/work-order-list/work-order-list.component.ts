@@ -16,4 +16,19 @@ export class WorkOrderListComponent implements OnInit {
       error: (err) => console.error(err),
     });
   }
+  sortUsingPaymentTerms() {
+    this.workOrdersService.getWorkOrdersSortedByPaymentTerms().subscribe({
+      next: (workOrders) => (this.workOrders = workOrders),
+      error: (err) => console.error(err),
+    });
+  }
+  filterUsingDate(event: any) {
+    console.log(event);
+    this.workOrdersService
+      .getWorkOrdersFilteredByDate(event.target.value)
+      .subscribe({
+        next: (workOrders) => (this.workOrders = workOrders),
+        error: (err) => console.error(err),
+      });
+  }
 }

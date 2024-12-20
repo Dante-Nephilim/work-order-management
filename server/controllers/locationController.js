@@ -18,6 +18,26 @@ export async function createLocation(req, res) {
   }
 }
 
+export async function getLocationsCompleted(req, res) {
+  try {
+    const locations = await Location.find({ state: "Completed" });
+    res.status(200).json(locations);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+}
+
+export async function getLocationsSortedByName(req, res) {
+  try {
+    const locations = await Location.find().sort({ name: 1 });
+    res.status(200).json(locations);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+}
+
 export async function getLocations(req, res) {
   try {
     const locations = await Location.find();

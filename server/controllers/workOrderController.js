@@ -31,3 +31,24 @@ export async function getWorkOrders(req, res) {
     res.status(500).json({ error: err.message });
   }
 }
+
+export async function getWorkOrdersSortedByPaymentTerms(req, res) {
+  try {
+    const workOrders = await WorkOrder.find().sort({ paymentTerms: -1 });
+    res.status(200).json(workOrders);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+}
+
+export async function getWorkOrdersFilteredByDate(req, res) {
+  const { date } = req.body;
+  try {
+    const workOrders = await WorkOrder.find({ dueDate: new Date(date) });
+    res.status(200).json(workOrders);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+}

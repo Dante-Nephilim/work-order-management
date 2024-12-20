@@ -3,11 +3,10 @@
 
     <mat-card-title>Work Orders</mat-card-title>
     <button mat-raised-button color="primary" [routerLink]="'new'" style="margin-bottom:20px;">Add Work Order</button>
+    <button mat-raised-button color="primary"  style="margin-bottom:20px;" (click)="sortUsingPaymentTerms()">Sort By Payment Terms</button>
+    <input title="FilterUsingDate" (change)="filterUsingDate($event)" id="dueDate" matInput type="date">
   </div>
   <mat-card-content>
-    <!-- <mat-list>
-      <mat-list-item *ngFor="let w of workOrders">{{ w.contractorId }}</mat-list-item>
-    </mat-list> -->
     <table mat-table [dataSource]="workOrders" class="mat-elevation-z8" style="width: 100%;">
       <ng-container matColumnDef="contractorId">
         <th mat-header-cell *matHeaderCellDef>Contractor</th>

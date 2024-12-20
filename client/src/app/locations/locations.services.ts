@@ -33,4 +33,14 @@ export class LocationsService {
       data
     );
   }
+  getLocationsSortedByName(): Observable<Location[]> {
+    return this.http.get<Location[]>(
+      `http://localhost:3000/api/locations/sortByName`
+    );
+  }
+  getLocationsCompleted(): Observable<Location[]> {
+    return this.http.get<Location[]>(
+      `http://localhost:3000/api/locations/completed`
+    );
+  }
 }

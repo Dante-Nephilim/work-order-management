@@ -34,4 +34,15 @@ export class WorkOrdersService {
       data
     );
   }
+  getWorkOrdersSortedByPaymentTerms(): Observable<WorkOrder[]> {
+    return this.http.get<WorkOrder[]>(
+      `http://localhost:3000/api/work-orders/sortByPaymentTerms`
+    );
+  }
+  getWorkOrdersFilteredByDate(date: string): Observable<WorkOrder[]> {
+    return this.http.post<WorkOrder[]>(
+      `http://localhost:3000/api/work-orders/filterByDate`,
+      { date }
+    );
+  }
 }

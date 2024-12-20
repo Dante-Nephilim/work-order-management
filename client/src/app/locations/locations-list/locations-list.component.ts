@@ -25,7 +25,20 @@ export class LocationsListComponent implements OnInit {
       error: (err) => console.error(err),
     });
   }
-
+  sortUsingName() {
+    console.log('Sorting locations by name');
+    this.locationsService.getLocationsSortedByName().subscribe({
+      next: (data) => (this.locations = data),
+      error: (err) => console.error(err),
+    });
+  }
+  filterByState() {
+    console.log('Filtering locations by state');
+    this.locationsService.getLocationsCompleted().subscribe({
+      next: (data) => (this.locations = data),
+      error: (err) => console.error(err),
+    });
+  }
   completeLocation(location: Location) {
     this.selectedLocation = location;
     this.selectedContractorId = '';
