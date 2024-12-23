@@ -192,3 +192,16 @@ Body:
 - generate pdf of all the bills in the system
 
 ---
+
+## Further Enhancements
+
+- Most of the time spent on this project was to implement a MVP.
+- More features could be added. For Example: 
+  - Bill generation could be scheduled to run at a specific time.
+  - Bill generation could be triggered by a webhook.
+  - A dashboard could be added to show the status of the system with more useful information.
+  - Styling could be improved.
+  - Error handling could be improved.
+  - The Accessibility part of UI could be improved.
+  - The security part of UI could be improved.
+  - The App's performance could be improved.
