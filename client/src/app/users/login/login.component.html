@@ -14,8 +14,10 @@
           </mat-form-field>
   
           <div *ngIf="error" style="color: red; margin-bottom: 10px;">{{ error }}</div>
-  
-          <button mat-raised-button color="primary" type="submit" [disabled]="!email || !password">Login</button>
+          <div style="display:flex; justify-content: space-between; gap: 16px;">
+            <button mat-raised-button color="primary" type="submit" [disabled]="!email || !password">Login</button>
+            <button mat-raised-button color="primary" type="button"(click)="register()" [disabled]="!email || !password">Register</button>
+          </div>
         </form>
       </mat-card-content>
     </mat-card>

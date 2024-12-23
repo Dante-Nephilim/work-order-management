@@ -30,4 +30,22 @@ export class LoginComponent {
         },
       });
   }
+  register() {
+    this.http
+      .post('http://localhost:3000/api/users/register', {
+        name: this.email,
+        email: this.email,
+        password: this.password,
+      })
+      .subscribe({
+        next: (response: any) => {
+          localStorage.setItem('token', response.token);
+          this.router.navigate(['/dashboard']);
+        },
+        error: (err) => {
+          this.error = err.error.error || 'An error occurred.';
+          localStorage.removeItem('token');
+        },
+      });
+  }
 }
