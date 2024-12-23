@@ -19,6 +19,7 @@ MEAN stack application for managing work orders and billing
 - Run `npm run dev` in the server folder
 - Navigate to `http://localhost:4200` in your browser
 - Login using the test credentials provided below
+- Create a new User with email and password with the register button.
 
 
 ## Database Schema
